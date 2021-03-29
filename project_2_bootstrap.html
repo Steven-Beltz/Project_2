@@ -30,24 +30,24 @@
           dataType: 'json',
           success: function(data) {
             console.log(data);
-            
+            var temp = data.main.temp;
             console.log(temp);
             var humid = $(data.main.humidity);
             var icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
             $('ul#weather').append(`<li>Temperature: ${data.main.temp}</li>
                                     <li>Humidity: ${data.main.humidity}</li>
                                     <li>${data.weather[0].main} Day <img src=${icon}></li>`);
-          //   var temp = $(data.main.temp);
-          //   if (temp <= 65.00){
-          //       $('span#weather').append(' a bit chilly! Bring a coat if you plan on visiting your neighborhood salamanders. Or stay inside and enjoy one of our videos!');
-          //     }
-          //     else if (temp <= 80.00){
-          //       $('span#weather').append(' apparently nice! Perfect for enjoying nature and saying hello to the salamanders');
-          //     }
-          //     else if (temp > 81.00){
-          //       $('span#weather').append(' quite warm! If you plan on going outside be sure to bring sunscreen and water! Or stay inside and enjoy one of our videos!');
-          //     };
-          // }
+            
+            if (temp <= 65.00){
+              $('#instruct').append('<p> a bit chilly! Bring a coat if you plan on visiting your neighborhood salamanders. Or stay inside and enjoy one of our videos!</p>');
+            }
+            else if (temp <= 80.00){
+              $('#instruct').append('<p> apparently nice! Perfect for enjoying nature and saying hello to the salamanders</p>');
+            }
+            else if (temp > 81.00){
+              $('#instruct').append('<p> quite warm! If you plan on going outside be sure to bring sunscreen and water! Or stay inside and enjoy one of our videos!</p>');
+            }
+          }
         });
         $('button').click(function(){
           $(this).siblings().toggle();
@@ -103,7 +103,7 @@
         <div id="frog">
           <ul id="weather" class=""></ul>
           <div id="" class=""></div>
-          <p id="" class="">The salamanders are happy! Their spring is at a constant temperature that is to their liking (lucky!). But today's weather for us is<span id="weather"></span></p>
+          <p id="instruct" class="">The salamanders are happy! Their spring is at a constant temperature that is to their liking (lucky!). But today's weather for us is</p>
         </div>
       </div>
       <div class="col-3 m-2" id="">
